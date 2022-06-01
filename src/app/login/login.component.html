@@ -1,0 +1,45 @@
+<main id="main">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 col-lg-offset-6" style="background-color: #fff;padding:10px;margin-left:20px;margin-top:10px;">
+                <img alt="Student Image" style="padding:10px;height:500px;float: right;" src="assets/images/flight.jpg">
+            </div>
+
+            <mat-card class="col-lg-4 col-lg-offset-4" class="login-tab">
+
+                <div class="login-items">
+                    <div class="alert alert-warning" *ngIf="invalidLogin">
+                        {{ errorMessage }}
+                    </div>
+                    <h3>Sign In </h3>
+                    <form (ngSubmit)="!loginForm.invalid && basicAuthLogin()" #loginForm="ngForm">
+                        <div class="email">
+                            <mat-form-field>
+                                <input matInput type="text" placeholder="email" name="email" [(ngModel)]="email" />
+                                <button mat-button *ngIf="email" matSuffix mat-icon-button aria-label="Clear" (click)="email=''">
+                                <mat-icon>close</mat-icon>
+                              </button>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="pass">
+                            <mat-form-field>
+                                <input matInput type="password" placeholder="password" name="password" [(ngModel)]="password" />
+                                <button mat-button *ngIf="password" matSuffix mat-icon-button aria-label="Clear" (click)="password=''">
+                                    <mat-icon>close</mat-icon>
+                                </button>
+                            </mat-form-field>
+                        </div>
+                        <button type="submit" mat-raised-button class="btn">Sign in</button><br><br>
+                        <span> Need to Sign Up? <a href="/register">Sign Up here</a></span>
+
+                    </form>
+                </div>
+            </mat-card>
+
+        </div>
+
+
+
+    </div>
+</main>

@@ -1,0 +1,22 @@
+.login-tab {
+    display: flex;
+    flex-direction: row;
+    width: 350px;
+    height: 395px;
+    padding: 30px;
+    margin: 30px;
+    border-radius: 12px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    align-items: center;
+    justify-content: center;
+    float: to left;
+}
+
+.btn {
+    background-color: #00796b;
+    background-color: var(--gm-fillbutton-container-color, #00796b);
+    color: #fff;
+    color: var(--gm-fillbutton-ink-color, #fff);
+    min-width: 200px;
+    min-height: 28px;
+}
