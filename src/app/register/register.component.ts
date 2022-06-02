@@ -29,7 +29,7 @@ export class RegisterComponent implements OnInit {
         console.log(data);
         this.user=data;
         this.notificationService.success(':: Regitstration successful! Please log in');
-        this.router.navigateByUrl('welcome');                               
+        this.router.navigate(['/login']);                            
       },
       error=>{
         this.notificationService.warn(':: Not submitted!');

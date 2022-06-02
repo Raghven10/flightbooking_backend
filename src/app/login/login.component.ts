@@ -23,12 +23,11 @@ export class LoginComponent implements OnInit {
         errorMessage = 'Invalid Credentials!';
         invalidLogin = false;
         user : User = new User();
-        ngOnInit() {
-        }
+        ngOnInit() {   }
 
         onClose(){
           this.dialog.closeAll();
-          this.notificationService.success("Welcome to Learnoo.net. Login button is still there in navbar.")
+          this.notificationService.success("Welcome to flightbooking App.")
         }
 
        
@@ -42,7 +41,7 @@ export class LoginComponent implements OnInit {
       console.log(data);
       this.user=data;
       this.invalidLogin = false;  
-      this.dialog.closeAll();       
+      this.router.navigate(['/booking']);       
     },
     error=>{
       console.log(error);

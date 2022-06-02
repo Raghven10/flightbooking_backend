@@ -11,6 +11,7 @@ export class AddressService {
 
   form: FormGroup = new FormGroup({
     id:new FormControl(null),
+    booking:new FormControl(),
     street1: new FormControl('', [Validators.required]),
     street2: new FormControl('', [Validators.required]),
     city: new FormControl('', [Validators.required]),
@@ -23,14 +24,15 @@ export class AddressService {
   constructor(private http: HttpClient) { }
 
   retrieveUserAddress(){
-    return this.http.get<Address>(server_url+`/getuseraddress`);
+    return this.http.get<Address>(server_url+`/address-user`);
   }
 
 
-  updateUserAddress(address){
+  saveUserAddress(address: any){
     return this.http.post(server_url+`/saveuseraddress`,address);
   }
 
+  
   populateForm(row: any) {
     this.form.setValue(row);
   }

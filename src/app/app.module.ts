@@ -18,6 +18,10 @@ import { DatePipe } from '@angular/common';
 import { MaterialModule } from './material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import { FlightSearchComponent } from './flight-search/flight-search.component';
+import { AddressComponent } from './address/address.component';
+import { PaymentComponent } from './payment/payment.component';
+import { ManageBookingComponent } from './manage-booking/manage-booking.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +31,11 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
     RegisterComponent,
     SearchTicketComponent,
     HomeComponent,
-    BookingComponent
+    BookingComponent,
+    FlightSearchComponent,
+    AddressComponent,
+    PaymentComponent,
+    ManageBookingComponent
   ],
   imports: [
     BrowserModule,

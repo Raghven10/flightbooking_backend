@@ -1,0 +1,76 @@
+<div class="container">
+    <mat-card>        
+        <h2 class="text-center">Search Flights</h2> <hr>
+            <div class="row">
+              <form [formGroup]="flightService.form" (submit)="onSubmit()">
+                <div class="col-lg-3">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Origin</mat-label>
+                        <mat-select formControlName="origin">                          
+                          <mat-option *ngFor="let airport of airports" [value]="airport.name">{{airport.code}} - {{airport.name}} </mat-option>
+                        </mat-select>
+                        <mat-icon matSuffix>flight_takeoff</mat-icon>
+                        <mat-hint>Enter Origin Airport Code/ Name eg. DEL for IGI Delhi Airport</mat-hint>
+                    </mat-form-field>
+                </div>
+                
+                <div class="col-lg-3">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Destination</mat-label>
+                        <mat-select formControlName="destination">                          
+                          <mat-option *ngFor="let airport of airports" [value]="airport.name">{{airport.code}} - {{airport.name}} </mat-option>
+                        </mat-select>
+                        <mat-icon matSuffix>flight_landing</mat-icon>
+                        <mat-hint>Enter Destination Airport Code/ Name eg. PAT for Patna Airport</mat-hint>
+                      </mat-form-field>
+                </div> 
+               
+                <div class="col-lg-3">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Choose Date of Flight</mat-label>
+                        <input formControlName="dateOfFlight" [min]="minDate" [max]="maxDate" [matDatepicker]="picker" matInput placeholder="Placeholder">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                        <mat-hint>Enter Date of Flight</mat-hint>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-lg-2">
+                    <button mat-icon-button>
+                       <mat-icon>search </mat-icon> 
+                    </button>
+                </div>
+              </form>
+            </div> <br><br>
+
+        <div class="conatainer">         
+          
+              <table class="table table-striped">
+
+                <thead>
+                  <th>Date of Flight</th>
+                  <th>Airline</th>
+                  <th>Origin</th>
+                  <th>Destination</th>
+                  <th>#Seats Available</th>
+                  <th>Price</th>
+                  <th>Offer*</th>
+                  <th>Book</th>
+                </thead>
+                <tr *ngFor="let flight of flights" style="color:blueviolet; text-align: justify;">
+                  <td>{{flight.dateOfFlight | date}}</td>
+                  <td>{{flight.airline}}</td>
+                  <td>{{flight.origin}}</td>
+                  <td>{{flight.destination}}</td>
+                  <td>{{flight.noOfSeats}}</td>
+                  <td style="color:rgb(226, 43, 43)"><b>Rs. {{flight.price}}</b></td>
+                  <td>{{flight.remarks}}</td>
+                  <td><button mat-icon-button color="accent" (click)="bookTicket(flight.id)"><mat-icon>payment</mat-icon></button> </td>
+
+                </tr>
+
+              </table>
+            </div>
+    </mat-card>
+</div>
+

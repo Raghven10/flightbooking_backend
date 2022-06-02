@@ -32,7 +32,7 @@ export class BasicAuthService {
         map(
           data=>{
               this.user=data;  
-             console.log("Role Size: "+this.user.roles.length);
+              console.log("Role Size: "+this.user.roles.length);
               if(this.user.roles.length==1)
               {              
               
@@ -79,14 +79,19 @@ export class BasicAuthService {
    }
 
   isUserLoggedIn() {
-   let user = sessionStorage.getItem('authenticatedUser')
-   return !(user === null)
+   if(this.user){
+     return true;
+   }
+   else{
+     return false;
+   }
   }
 
   logout() {
   this.http.get(server_url+`/session-logout`).subscribe(
-    data=>{ return data;      
-    })   
+    data=>{ 
+      sessionStorage.clear();
+      })   
      
    }
 
