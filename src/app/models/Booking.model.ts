@@ -13,11 +13,5 @@ export class Booking{
 
     public appUser!: User;
 
-    public address!: Address;
-
     public flight!: Flights;
-
-    public payment!: Payment;
-
-
 }

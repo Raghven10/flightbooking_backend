@@ -17,17 +17,29 @@ export class BookingService {
   form: FormGroup = new FormGroup({    
     pnr_id: new FormControl(''),
     noOfSeatsBooked: new FormControl(''),  
-    address: new FormControl(),  
-    flight: new FormControl()   
+    flight: new FormControl('')   
+        
   });
 
+  initializeFormGroup() {
+    this.form.setValue({
+      pnr_id: '',
+      noOfSeatsBooked: '',
+      flight: ''
+    })}
 
-  bookSeat(flight:any){
-    return this.http.post(server_url+`/create-booking`,flight);
+
+  bookSeat(booking:any){
+    return this.http.post(server_url+`/create-booking`,booking);
   }
 
   fetchMyBookings(){
     return this.http.get<Booking[]>(server_url+`/user-bookking-all`)
+
+  }
+
+  fetchBookingDetails(id: any){
+    return this.http.get<Booking>(server_url+`/booking-details/${id}`)
 
   }
 

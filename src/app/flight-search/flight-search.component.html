@@ -1,9 +1,10 @@
 <div class="container">
     <mat-card>        
         <h2 class="text-center">Search Flights</h2> <hr>
-            <div class="row">
+           
               <form [formGroup]="flightService.form" (submit)="onSubmit()">
-                <div class="col-lg-3">
+                <div class="row">
+                <div class="row col-lg-6">
                     <mat-form-field appearance="fill">
                         <mat-label>Origin</mat-label>
                         <mat-select formControlName="origin">                          
@@ -14,7 +15,7 @@
                     </mat-form-field>
                 </div>
                 
-                <div class="col-lg-3">
+                <div class="row col-lg-6">
                     <mat-form-field appearance="fill">
                         <mat-label>Destination</mat-label>
                         <mat-select formControlName="destination">                          
@@ -24,24 +25,31 @@
                         <mat-hint>Enter Destination Airport Code/ Name eg. PAT for Patna Airport</mat-hint>
                       </mat-form-field>
                 </div> 
-               
-                <div class="col-lg-3">
-                    <mat-form-field appearance="fill">
-                        <mat-label>Choose Date of Flight</mat-label>
-                        <input formControlName="dateOfFlight" [min]="minDate" [max]="maxDate" [matDatepicker]="picker" matInput placeholder="Placeholder">
-                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                        <mat-datepicker #picker></mat-datepicker>
-                        <mat-hint>Enter Date of Flight</mat-hint>
-                    </mat-form-field>
-                </div>
+              </div> <br>
+              <div class="row">
+                <div class="row col-lg-6">
+                  <mat-form-field appearance="fill">
+                      <mat-label>Choose Date of Flight</mat-label>
+                      <input formControlName="dateOfFlight" [min]="minDate" [max]="maxDate" [matDatepicker]="picker" matInput placeholder="Placeholder">
+                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-datepicker #picker></mat-datepicker>
+                      <mat-hint>Enter Date of Flight</mat-hint>
+                  </mat-form-field>
+              </div>
 
-                <div class="col-lg-2">
-                    <button mat-icon-button>
-                       <mat-icon>search </mat-icon> 
-                    </button>
-                </div>
+              <div class="row col-lg-6">
+                  <button mat-raised-button color="accent" [disabled]="flightService.form.invalid">
+                    Search Flight                   
+                    <mat-icon matSuffix>search </mat-icon> 
+                  </button> 
+                  <mat-hint>Click to Search</mat-hint>
+              </div>
+
+              </div>
+               
               </form>
-            </div> <br><br>
+
+            <br><br>
 
         <div class="conatainer">         
           

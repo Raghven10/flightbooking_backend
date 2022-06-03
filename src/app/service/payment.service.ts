@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { server_url } from '../app.constant';
+import { Booking } from '../models/Booking.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class PaymentService {
     amount: new FormControl('', [Validators.required]),
     payment_method: new FormControl('', [Validators.required]),
     payment_gateway: new FormControl('', [Validators.required]),
-    booking_id: new FormControl(),  
+    booking: new FormControl(new Booking),  
     
    });
 

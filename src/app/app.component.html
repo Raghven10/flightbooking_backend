@@ -8,41 +8,37 @@
     <!-- <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
       <mat-icon>menu</mat-icon>
     </button> -->
-    <a routerLink="/search-flight"  *ngIf="authService.isUserLoggedIn">
+    <a routerLink="/search-flight">
       <button mat-button color="warn">
         Search Flights
       </button>
     </a>
 
-    <a routerLink="/manage-booking"  [hidden]="!authService.isUserLoggedIn">
+    <a routerLink="/manage-booking"  [hidden]="selectedRole===null">
       <button mat-button color="accent">
         Manage Booking
       </button>
     </a>
 
-    <a routerLink="/register"  *ngIf="authService.isUserLoggedIn">
+    <a routerLink="/register" [hidden]="selectedRole!==null">
       <button mat-button color="accent">
       Sign Up
       </button>
     </a>
 
-    <a routerLink="/login" *ngIf="authService.isUserLoggedIn">
+    <a routerLink="/login" [hidden]="selectedRole!==null">
       <button mat-button color="accent">
         Sign In
       </button>
     </a>
 
-    <p *ngIf="authService.isUserLoggedIn">{{authService.user.firstName}}</p>
+    <p class="text-small" [hidden]="selectedRole==null">{{fullname}}</p>
     
    
-      <button mat-icon-button (click)="logout()" *ngIf="authService.isUserLoggedIn">
+      <button mat-icon-button (click)="logout()" [hidden]="selectedRole==null">
         <mat-icon>lock</mat-icon>
       </button>
-   
 
-    <button mat-icon-button color="accent" aria-label="Options">
-      <mat-icon>more_vert</mat-icon>
-    </button>
   </mat-toolbar>
 
 </p>

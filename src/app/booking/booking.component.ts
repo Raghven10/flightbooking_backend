@@ -7,6 +7,8 @@ import { FlightSearchService } from '../service/flight-search.service';
 import { PaymentService } from '../service/payment.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NotificationService } from '../service/notification.service';
+import { Booking } from '../models/Booking.model';
+import { Flights } from '../models/Flights.model';
 
 @Component({
   selector: 'app-booking',
@@ -21,8 +23,8 @@ import { NotificationService } from '../service/notification.service';
 })
 export class BookingComponent implements OnInit {
 
-  flight: any;
-  booked_flight: any;
+  details!: Flights;
+  booked_flight!:any;
 
   counter(i: number) {
     return new Array(i);
@@ -44,9 +46,10 @@ export class BookingComponent implements OnInit {
   fetchFlightDetails(id: any){
     this.flightService.getFlightDetail(id).subscribe(
       success=>{
-        this.flight = success;
-        console.log(this.flight);
-        return this.flightService;
+        this.details = success;
+        this.bookingService.form.controls['flight'].setValue(this.details);
+        console.log("Details: "+this.details);
+        return this.details;
       },
       error=>{
         return error;
@@ -56,10 +59,10 @@ export class BookingComponent implements OnInit {
 
   bookSeat(){
     this.bookingService.bookSeat(this.bookingService.form.value).subscribe(
-      success=>{
-        
+      success=>{        
         this.booked_flight = success; 
-        console.log('Booking_ID: '+this.booked_flight.pnr_id)               
+        let id = this.booked_flight.pnr_id;
+        this.router.navigate(['/address', id]);              
       },
       error=>{
         return error;
@@ -68,29 +71,6 @@ export class BookingComponent implements OnInit {
 
   }
 
-  saveAddress(){
-    this.addressService.saveUserAddress(this.addressService.form.value).subscribe(
-      success=>{
-        this.notificationService.success("Address saved successfully. Now make payment and finlize your booking.")        
-        return success;
-      },
-      error=>{
-        return error;
-      }
-    )
-  }
-
-  makePayment(){
-    this.paymentService.makePayment(this.paymentService.form.value).subscribe(
-      (success: any)=>{
-        this.notificationService.success("payment made successfully.")  
-        this.router.navigate(['/manage-booking']);     
-        return success;
-      },
-      (error:any)=>{
-        return error;
-      }
-    )
-  }
+  
 
 }

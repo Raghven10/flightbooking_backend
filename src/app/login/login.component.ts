@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
       console.log(data);
       this.user=data;
       this.invalidLogin = false;  
-      this.router.navigate(['/booking']);       
+      this.router.navigate(['/search-flight']);       
     },
     error=>{
       console.log(error);

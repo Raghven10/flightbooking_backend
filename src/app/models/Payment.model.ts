@@ -10,5 +10,5 @@ export class Payment{
 
     public payment_gateway!: string;
 
-    public booking_id!: Booking;
+    public booking!: Booking;
 }

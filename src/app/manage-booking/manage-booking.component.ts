@@ -25,6 +25,7 @@ export class ManageBookingComponent implements OnInit {
     this.bookingService.fetchMyBookings().subscribe(
       success=>{
         this.bookings = success
+        console.log(this.bookings)
         return success;
       },
       error=>{

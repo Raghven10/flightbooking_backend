@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Booking } from '../models/Booking.model';
 import { AddressService } from '../service/address.service';
+import { BookingService } from '../service/booking.service';
+
 import { NotificationService } from '../service/notification.service';
 
 @Component({
@@ -10,23 +13,40 @@ import { NotificationService } from '../service/notification.service';
 })
 export class AddressComponent implements OnInit {
 
+  booking_id:any
   constructor(
     public addressService: AddressService, 
     public router: Router,
+    public route: ActivatedRoute,
+    public bookingService: BookingService,
     private notificationService: NotificationService
     ) { }
 
-
+    bookingDetail!: Booking
 
   ngOnInit(): void {
+    this.fetchBookingDetails(this.route.snapshot.params['id']); 
+    
   }
 
 
-  onSubmit(){
+  fetchBookingDetails(id:any){
+    this.bookingService.fetchBookingDetails(id).subscribe(
+      res=>{
+        this.bookingDetail = res;
+        this.addressService.form.controls['booking'].setValue(this.bookingDetail);
+        console.log(this.bookingDetail);
+      }
+    )
+  }
+
+
+  saveAddress(){
     this.addressService.saveUserAddress(this.addressService.form.value).subscribe(
       success=>{
-        this.notificationService.success("Address registered successfully.")
-        this.router.navigate(['/payment'])
+        this.notificationService.success("Address saved successfully. Now make payment and finlize your booking.");
+        let id = this.bookingDetail.pnr_id;
+        this.router.navigate(['/payment',id])        
         return success;
       },
       error=>{

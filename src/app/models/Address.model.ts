@@ -8,17 +8,13 @@ export class Address
     public street1!: String;
 	
 	
-	public street2!: String;
+	public street2!: String;	
 	
+	public city!: String;	
 	
-	public city!: String;
+	public pinCode!: String;	
 	
-	
-	public pinCode!: String;
-	
-	
-	public state!: String;
-	
+	public state!: String;	
 	
     public country!: String;
 

@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { Flights } from '../models/Flights.model';
 import { FlightSearchService } from '../service/flight-search.service';
 import { NotificationService } from '../service/notification.service';
+import { BasicAuthService } from '../service/security/basic-auth.service';
 
 
 @Component({
@@ -27,6 +28,7 @@ export class FlightSearchComponent implements OnInit {
     public flightService:FlightSearchService,
     public datePipe: DatePipe,
     public dialog: MatDialog,
+    public authService: BasicAuthService,
     public notificationService: NotificationService,
     private router: Router
   ) {
@@ -81,7 +83,15 @@ export class FlightSearchComponent implements OnInit {
 
 
 bookTicket(id: any){  
-  this.router.navigate(['/booking', id]); 
+  
+  if(this.authService.isUserLoggedIn()){
+    this.router.navigate(['/booking', id]); 
+  }
+  else{
+    this.notificationService.warn("Please Log In first in order to book a flight!")
+    this.router.navigate(['/login', id]); 
+  }
+  
 }
 
 
@@ -108,7 +118,7 @@ onSubmit() {
        }                
       },
       error=>{
-        this.notificationService.warn(':: '+error); 
+        this.notificationService.warn(':: Oops! Remote servers are seems to be down!! '); 
         this.flightService.form.reset();
         
         return error;

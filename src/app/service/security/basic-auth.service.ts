@@ -42,7 +42,8 @@ export class BasicAuthService {
               sessionStorage.setItem('selectedRole',JSON.parse(JSON.stringify(this.user.roles))[0].roleName)
               sessionStorage.setItem('firstName',JSON.parse(JSON.stringify(this.user.firstName)))
               sessionStorage.setItem('lastName',JSON.parse(JSON.stringify(this.user.lastName)))
-              this.router.navigate(['']);
+              this.router.navigate(['search-flight']);
+              
               }
     
               else if (this.user.roles.length>1){
@@ -78,19 +79,16 @@ export class BasicAuthService {
       return null;   
    }
 
-  isUserLoggedIn() {
-   if(this.user){
-     return true;
+   isUserLoggedIn() {
+    let user = sessionStorage.getItem('authenticatedUser')
+    return !(user === null)
    }
-   else{
-     return false;
-   }
-  }
 
   logout() {
   this.http.get(server_url+`/session-logout`).subscribe(
     data=>{ 
       sessionStorage.clear();
+      
       })   
      
    }
