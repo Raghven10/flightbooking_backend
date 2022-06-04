@@ -4,19 +4,16 @@
       <mat-icon color="warn">flight_takeoff</mat-icon>
     </button>
     <span>{{title}} </span>
-    <span class="example-spacer"></span>
-    <!-- <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-      <mat-icon>menu</mat-icon>
-    </button> -->
-    <a routerLink="/search-flight">
+    <span class="example-spacer"></span>  
+    <a routerLink="/search-flight" [hidden]="selectedRole!==null">
       <button mat-button color="warn">
         Search Flights
       </button>
-    </a>
+    </a>   
 
-    <a routerLink="/manage-booking"  [hidden]="selectedRole===null">
+    <a routerLink="/admin"  [hidden]="selectedRole!=='admin'">
       <button mat-button color="accent">
-        Manage Booking
+        Manage Bookings and Airlines
       </button>
     </a>
 
@@ -32,8 +29,7 @@
       </button>
     </a>
 
-    <p class="text-small" [hidden]="selectedRole==null">{{fullname}}</p>
-    
+    <p class="text-small" [hidden]="selectedRole==null">{{fullname}}</p>    
    
       <button mat-icon-button (click)="logout()" [hidden]="selectedRole==null">
         <mat-icon>lock</mat-icon>

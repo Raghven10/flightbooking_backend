@@ -1,0 +1,35 @@
+<div class="row">
+    <mat-card style.background="lightpink">
+        <h2 class="text-center"><b>ALL AIRPORTS DETAILS</b>
+            <a routerLink="/admin/airport/new" style="float: right;">
+                <button mat-raised-button color="accent" style="width:20vw;">
+               Add New Airport
+                </button>
+            </a>
+        </h2><hr> 
+        
+
+        <table class="table table-striped">
+            <thead>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>CODE</th>               
+                <th>STATE</th>
+                <th>Action</th>
+            </thead>            
+            <tr *ngFor="let airport of airports">
+                <td>{{airport.id}}</td>
+                <td>{{airport.name}}</td>
+                <td>{{airport.code}}</td>                
+                <td>{{airport.state}}</td>
+                <td>
+                    <button mat-icon-button (click)="deleteAirport(airport.id)" color="warn">
+                        <mat-icon>cancel</mat-icon>                            
+                    </button>
+                </td>
+            </tr>               
+        </table>
+    </mat-card><br>
+</div>
+
+

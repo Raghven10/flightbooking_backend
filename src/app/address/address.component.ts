@@ -46,7 +46,7 @@ export class AddressComponent implements OnInit {
       success=>{
         this.notificationService.success("Address saved successfully. Now make payment and finlize your booking.");
         let id = this.bookingDetail.pnr_id;
-        this.router.navigate(['/payment',id])        
+        this.router.navigate(['/user/booking/payment',id])        
         return success;
       },
       error=>{

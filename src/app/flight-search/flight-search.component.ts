@@ -47,6 +47,7 @@ export class FlightSearchComponent implements OnInit {
   dof: Date = new Date();
   minDate: Date;
   maxDate: Date;
+  selectedRole! : any
 
 
 
@@ -57,9 +58,9 @@ export class FlightSearchComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.selectedRole = sessionStorage.getItem('selectedRole');
     this.getAllAirports();
     this.getAllFlights();
-
   }
 
   getAllAirports(){
@@ -85,7 +86,7 @@ export class FlightSearchComponent implements OnInit {
 bookTicket(id: any){  
   
   if(this.authService.isUserLoggedIn()){
-    this.router.navigate(['/booking', id]); 
+    this.router.navigate(['/user/booking', id]); 
   }
   else{
     this.notificationService.warn("Please Log In first in order to book a flight!")

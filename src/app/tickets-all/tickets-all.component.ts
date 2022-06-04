@@ -1,31 +1,33 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { Booking } from '../models/Booking.model';
 import { BookingService } from '../service/booking.service';
 import { NotificationService } from '../service/notification.service';
 
 @Component({
-  selector: 'app-manage-booking',
-  templateUrl: './manage-booking.component.html',
-  styleUrls: ['./manage-booking.component.css']
+  selector: 'app-tickets-all',
+  templateUrl: './tickets-all.component.html',
+  styleUrls: ['./tickets-all.component.css']
 })
-export class ManageBookingComponent implements OnInit {
+export class TicketsAllComponent implements OnInit {
 
+  bookings!: Booking[]
   constructor(
-    public bookingService: BookingService,
-    public router: Router,    
-    public notification: NotificationService
+    private bookingService: BookingService,
+    private router: Router,
+    public notificationService: NotificationService
   ) { }
 
-  bookings:any = []
   ngOnInit(): void {
     this.fetchUserBookings();
   }
 
+  
   fetchUserBookings(){
     this.bookingService.fetchMyBookings().subscribe(
       success=>{
         this.bookings = success
-        console.log(this.bookings)
+        console.log(this.bookings)        
         return success;
       },
       error=>{
@@ -33,7 +35,7 @@ export class ManageBookingComponent implements OnInit {
       }
      
     )
-  }
+  };
 
   getBookingDetails(id:any){   
     this.router.navigate(['ticket/detail/',id]);
@@ -41,15 +43,14 @@ export class ManageBookingComponent implements OnInit {
 
   cancelBooking(id: any){
     this.bookingService.cancelBooking(id).subscribe(
-      success=>{
-        this.notification.success("Booking Cancelled successfully!");
-       
+      res=>{
+        this.notificationService.success("Ticked cancelled successfully.");
+        window.location.reload();
       },
       error=>{
-        this.notification.warn("::Error - Booking not Cancelled!")
+        this.notificationService.warn("::Error - Ticked could not be cancelled!")
       }
     )
-
-  }
+  };
 
 }

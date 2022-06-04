@@ -1,12 +1,9 @@
-<div class="container">
-    <mat-card>
-
-        <h2 class="text-center">Manage My Bookings</h2><hr>
-
-        <div>
+<div class="row">
+    <mat-card style.background="lightpink">
+        <h2 class="text-center"><b>ALL TICKET DETAILS</b></h2><hr>
         <table class="table table-striped">
             <thead>
-                <th>Booking ID</th>
+                <th>PNR</th>
                 <th>Date of Flight</th>
                 <th>Origin</th>
                 <th>Destination</th>
@@ -20,17 +17,14 @@
                 <td>{{booking.flight.destination}}</td>
                 <td>{{booking.status}}</td>
                 <td>
-                    <button mat-icon-button>
-                        <mat-icon mat-icon-button (click)="getBookingDetails(booking.pnr_id)" color="primary">description</mat-icon>                      
-                    </button>
-                        <button mat-icon-button (click)="cancelBooking(booking.pnr_id)" color="warn">
+                        <button mat-icon-button>
+                            <mat-icon mat-icon-button (click)="getBookingDetails(booking.pnr_id)" color="primary">description</mat-icon>                      
+                        </button>
+                        <button mat-icon-button (click)="cancelBooking(booking.pnr_id)" color="warn" [hidden]="booking.status==='CANCELLED'">
                             <mat-icon>cancel</mat-icon>                            
                         </button>
                 </td>
-            </tr>
-            
+            </tr>               
         </table>
-    </div>
-
-    </mat-card>
+    </mat-card><br>
 </div>

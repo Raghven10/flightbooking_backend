@@ -1,0 +1,37 @@
+<mat-card  class="mat-elevation-z8">
+    <h2 class="text-center"><b>ADD NEW AIRPORT</b></h2><hr>
+        <form [formGroup]="airportService.form" (submit)="registerAirport()">                              
+        <div class="row">   
+            <div class="row col-lg-5">
+                <mat-form-field appearance="fill">
+                    <mat-label>Name of Airport</mat-label>                       
+                    <input matInput formControlName="name">
+                    <mat-hint>Enter Name of Airport</mat-hint>
+                </mat-form-field>
+            </div>
+
+            <div class="row col-lg-5">
+                <mat-form-field appearance="fill">
+                    <mat-label>Airport Code</mat-label>                       
+                    <input matInput formControlName="code">
+                    <mat-hint>Enter Code of Airport</mat-hint>
+                </mat-form-field>
+            </div> 
+            </div>  
+           
+        <div class="row">                   
+            <div class="row col-lg-5">
+                    <mat-form-field appearance="fill">
+                        <mat-label>State</mat-label>                       
+                        <input matInput formControlName="state">
+                        <mat-hint>Enter State</mat-hint>
+                    </mat-form-field>
+            </div>        
+        
+                <div class="row col-lg-5">
+                    <button mat-raised-button [disabled]="airportService.form.invalid" style="width: 50vw;margin:auto" color="accent">Register Airport</button>              
+                </div> 
+            </div>
+                 
+        </form>   
+</mat-card>

@@ -1,0 +1,22 @@
+
+<div class="row">
+    <mat-card [hidden]="ticket===null">
+        <h2>Ticket Details</h2> <hr>
+        <table class="table table-striped">
+            <thead>
+                <tr>FLIGHT DETAILS</tr>
+                <tr>
+                    <th> PNR: {{ticket.pnr_id}} </th>
+                   <th> Airline: {{ticket.flight.airline.name}} </th>  
+                    <th> Date of Flight: {{ticket.flight.dateOfFlight}} </th>
+                    <th> ETD of Flight: {{ticket.flight.timeOfFlight}} </th>
+                </tr>
+                <tr>
+                    <th> Departure: {{ticket.flight.origin }}</th>
+                    <th> Destination: {{ticket.flight.destination}} </th>
+                </tr>
+            </thead>
+        </table>
+    </mat-card>
+</div>
+

@@ -1,0 +1,34 @@
+<div class="container">
+    
+    <mat-card>
+        <mat-toolbar color="black" style="color:rgb(56, 13, 173)">
+            <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+                <mat-icon color="warn">flight_takeoff</mat-icon>
+              </button>
+              <span>Booking Details</span>
+              <span class="example-spacer"></span>
+              <a routerLink="/user/ticket/search">
+                <button mat-button color="accent">
+                Search Ticket
+                </button>
+              </a>
+              <a routerLink="/user">
+                <button mat-button color="accent">
+                  Manage Booking
+                </button>
+              </a>
+
+              <a routerLink="/user/search-flight">
+                <button mat-button color="warn">
+                  Search Flights
+                </button>
+              </a> 
+             
+        </mat-toolbar><br><br>
+
+        <router-outlet></router-outlet>
+       
+
+    </mat-card>
+</div>
+

@@ -1,6 +1,12 @@
 <div class="container">
     <mat-card>        
-        <h2 class="text-center">Search Flights</h2> <hr>
+        <h2 class="text-center">Search Flights
+          <a routerLink="/admin/flight/new" style="float: right;" [hidden] ="selectedRole !== 'admin'">
+            <button mat-raised-button color="accent" style="width: 20vw;">
+           New Flight
+            </button>
+          </a>
+        </h2> <hr>
            
               <form [formGroup]="flightService.form" (submit)="onSubmit()">
                 <div class="row">
@@ -53,7 +59,7 @@
 
         <div class="conatainer">         
           
-              <table class="table table-striped">
+              <table class="table table-striped">             
 
                 <thead>
                   <th>Date of Flight</th>
@@ -65,9 +71,9 @@
                   <th>Offer*</th>
                   <th>Book</th>
                 </thead>
-                <tr *ngFor="let flight of flights" style="color:blueviolet; text-align: justify;">
+                <tr *ngFor="let flight of flights" style="color:blueviolet; text-align: justify;">                  
                   <td>{{flight.dateOfFlight | date}}</td>
-                  <td>{{flight.airline}}</td>
+                  <td>{{flight.airline.code}} - {{flight.airline.name}}</td>
                   <td>{{flight.origin}}</td>
                   <td>{{flight.destination}}</td>
                   <td>{{flight.noOfSeats}}</td>

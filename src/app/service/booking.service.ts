@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { server_url } from '../app.constant';
 import { Booking } from '../models/Booking.model';
-import { Flights } from '../models/Flights.model';
+
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +21,15 @@ export class BookingService {
         
   });
 
+  ticketSearchFormPnr: FormGroup = new FormGroup({
+    pnr: new FormControl('')
+  });
+
+  form2: FormGroup = new FormGroup({
+    email: new FormControl('')
+  });
+
+  
   initializeFormGroup() {
     this.form.setValue({
       pnr_id: '',
@@ -38,13 +47,18 @@ export class BookingService {
 
   }
 
-  fetchBookingDetails(id: any){
-    return this.http.get<Booking>(server_url+`/booking-details/${id}`)
+  fetchBookingDetails(pnr: any){
+    return this.http.get<Booking>(server_url+`/api/v1.0/flight/ticket/${pnr}`)
+
+  }
+
+  fetchBookingDetailsByEmailId(email: any){
+    return this.http.get<Booking[]>(server_url+`/api/v1.0/flight/booking/history/${email}`)
 
   }
 
   cancelBooking(booking: any){
-    return this.http.post(server_url+`/cancel-booking`, booking)
+    return this.http.get(server_url+`/api/v1.0/flight/booking/cancel/${booking}`)
 
   }
 

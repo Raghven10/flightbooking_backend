@@ -10,7 +10,7 @@ export class AdminUrlGuardService implements CanActivate{
   
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
 
-    if (this.authService.isUserLoggedIn() && sessionStorage.getItem('selectedRole')=='ADMIN') {
+    if (this.authService.isUserLoggedIn() && sessionStorage.getItem('selectedRole')=='admin') {
       return true;
     }
     this.router.navigate(['/']);

@@ -1,1 +1,79 @@
-<p>search-ticket works!</p>
+<div class="container">
+    <div class="row">
+        <div class="row col-5">
+            <mat-card>
+                <h2 class="text-center">Search Ticket By PNR</h2><HR>
+                    <form [formGroup]="bookingService.ticketSearchFormPnr" (submit)="searchTicketByPnr()">
+                        <div class="row">
+                        <div class="row col-lg-12">
+                            <mat-form-field>
+                                <mat-label>Enter  PNR </mat-label>                                                       
+                                  <input matInput formControlName="pnr">                                
+                                <mat-icon matSuffix>flight_takeoff</mat-icon>
+                                <mat-hint>Enter PNR to search ticket</mat-hint>
+                            </mat-form-field>
+                            
+                        </div>
+
+                        <div class="row col-lg-12">
+                            <button mat-raised-button color="accent">Search Ticket</button>
+                        </div>
+                        </div>
+                    </form>
+            </mat-card>
+        </div>
+    
+        <div class="row col-6" [hidden]="selectedRole!=='admin'">
+            <mat-card>
+                <h2 class="text-center">Search Ticket By Email ID</h2><HR>
+                    <form [formGroup]="bookingService.form2" (submit)="searchTicketByEmail()">
+                        <div class="row">
+                        <div class="row col-lg-12">
+                            <mat-form-field>
+                                <mat-label>Enter  Email ID </mat-label>                                                       
+                                  <input matInput formControlName="email">                                
+                                <mat-icon matSuffix>flight_takeoff</mat-icon>
+                                <mat-hint>Enter Email ID (someone@mail.com) to search ticket</mat-hint>
+                            </mat-form-field>
+                            
+                        </div>
+
+                        <div class="row col-lg-12">
+                            <button mat-raised-button color="accent">Search Ticket</button>
+                        </div>
+                        </div>
+                    </form>
+            </mat-card>
+        </div>
+    </div> 
+    <div class="row">
+        <mat-card [hidden]="tickets===null" *ngFor="let ticket of tickets">
+            <h2 class="text-center">Ticket Details (PNR: <b>{{ticket.pnr_id}}</b> )</h2> <hr>
+            <table class="table table-striped">
+                <thead>
+                    <tr>FLIGHT DETAILS</tr>
+                    <tr>
+                        <th> PNR: {{ticket.pnr_id}} </th>
+                        <th> Airline: {{ticket.flight.airline.name}} / {{ticket.flight.airline.code}}</th>   
+                        <th> Status: {{ticket.status}}</th>                      
+                    </tr>
+                    <tr>                        
+                        <th> Date of Flight: {{ticket.flight.dateOfFlight | date }} </th>
+                        <th> Departure: {{ticket.flight.origin }}</th>
+                        <th> ETD of Flight: {{ticket.flight.timeOfFlight}} </th>                        
+                        <th> Destination: {{ticket.flight.destination}} </th>
+                    </tr>
+                </thead>
+            </table>
+        </mat-card>
+    </div>
+    
+
+</div>
+
+
+  
+
+
+
+

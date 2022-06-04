@@ -1,0 +1,48 @@
+    <mat-card  class="mat-elevation-z8">
+        <h2 class="text-center">REGISTER NEW AIRLINE</h2><hr>
+            <form [formGroup]="airlineService.form" (submit)="registerAirline()">                              
+            <div class="row">   
+                <div class="row col-lg-5">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Name of Airline</mat-label>                       
+                        <input matInput formControlName="name">
+                        <mat-hint>Enter Name of Airline</mat-hint>
+                    </mat-form-field>
+                </div>
+    
+                <div class="row col-lg-5">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Airline Code</mat-label>                       
+                        <input matInput formControlName="code">
+                        <mat-hint>Enter Code of airline</mat-hint>
+                    </mat-form-field>
+                </div> 
+                </div>  
+               
+            <div class="row">                   
+                <div class="row col-lg-5">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Country</mat-label>                       
+                            <input matInput formControlName="country">
+                            <mat-hint>Enter Country</mat-hint>
+                        </mat-form-field>
+                </div>
+                <div class="row col-lg-5">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Operation Type</mat-label>
+                        <mat-select formControlName="operationType">
+                          <mat-option value="DOMESTIC"> DOMESTIC</mat-option>
+                          <mat-option value="INTERNATIONAL"> INTERNATIONAL</mat-option>
+                        </mat-select>
+                    </mat-form-field> 
+                </div>  
+            </div>
+
+                <div class="row">
+                    <div class="row col-lg-12">
+                        <button mat-raised-button [disabled]="airlineService.form.invalid" style="width: 80vw;margin:auto" color="accent">Register Airline</button>              
+                    </div> 
+                </div>
+                     
+            </form>   
+    </mat-card>

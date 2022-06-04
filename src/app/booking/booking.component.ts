@@ -62,7 +62,7 @@ export class BookingComponent implements OnInit {
       success=>{        
         this.booked_flight = success; 
         let id = this.booked_flight.pnr_id;
-        this.router.navigate(['/address', id]);              
+        this.router.navigate(['/user/booking/address', id]);              
       },
       error=>{
         return error;

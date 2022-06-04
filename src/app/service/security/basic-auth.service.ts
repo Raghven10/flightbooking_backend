@@ -42,7 +42,11 @@ export class BasicAuthService {
               sessionStorage.setItem('selectedRole',JSON.parse(JSON.stringify(this.user.roles))[0].roleName)
               sessionStorage.setItem('firstName',JSON.parse(JSON.stringify(this.user.firstName)))
               sessionStorage.setItem('lastName',JSON.parse(JSON.stringify(this.user.lastName)))
-              this.router.navigate(['search-flight']);
+
+              if(sessionStorage.getItem('selectedRole') ==='admin'){
+                this.router.navigate(['admin']);
+              }
+              this.router.navigate(['user']);
               
               }
     

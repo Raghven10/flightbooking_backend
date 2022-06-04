@@ -7,6 +7,4 @@ export class Airport{
     public code!: string;
 
     public state!: string;
-
-
 }

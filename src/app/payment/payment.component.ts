@@ -45,7 +45,7 @@ export class PaymentComponent implements OnInit {
     this.paymentService.makePayment(this.paymentService.form.value).subscribe(
       (success: any)=>{
         this.notificationService.success("payment made successfully.")  
-        this.router.navigate(['/manage-booking']);     
+        this.router.navigate(['/user']);     
         return success;
       },
       (error:any)=>{

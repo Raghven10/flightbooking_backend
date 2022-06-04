@@ -1,3 +1,5 @@
+import { Airline } from "./Airline.model";
+
 export class Flights{
 
     public id!: number;
@@ -8,5 +10,5 @@ export class Flights{
     public price!: number;
     public timeOfFlight!: Date;
     public remarks!: string;
-    public airline!: string;
+    public airline!: Airline;
 }

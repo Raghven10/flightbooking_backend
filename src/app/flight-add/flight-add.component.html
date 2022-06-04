@@ -1,0 +1,88 @@
+<div class="container">
+    <mat-card>        
+        <h2 class="text-center">ADD NEW FLIGHT</h2> <hr>           
+              <form [formGroup]="flightService.form" (submit)="onSubmit()">
+                <div class="row">
+                    <div class="row col-lg-3">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Select Airline</mat-label>
+                            <mat-select formControlName="airline">                          
+                              <mat-option *ngFor="let airline of airlines" [value]="airline">{{airline.code}} - {{airline.name}} </mat-option>
+                            </mat-select>
+                            <mat-icon matSuffix>flight_landing</mat-icon>
+                            <mat-hint>Select Airline</mat-hint>
+                          </mat-form-field>
+                    </div> 
+                <div class="row col-lg-4">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Select Origin</mat-label>
+                        <mat-select formControlName="origin">                          
+                          <mat-option *ngFor="let airport of airports" [value]="airport.name">{{airport.code}} - {{airport.name}} </mat-option>
+                        </mat-select>
+                        <mat-icon matSuffix>flight_takeoff</mat-icon>
+                        <mat-hint>Select Departure Airport</mat-hint>
+                    </mat-form-field>
+                </div>             
+               
+                <div class="row col-lg-4">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Select Destination</mat-label>
+                        <mat-select formControlName="destination">                          
+                          <mat-option *ngFor="let airport of airports" [value]="airport.name">{{airport.code}} - {{airport.name}} </mat-option>
+                        </mat-select>
+                        <mat-icon matSuffix>flight_landing</mat-icon>
+                        <mat-hint>Select Destination Airportt</mat-hint>
+                      </mat-form-field>
+                </div> 
+              </div> <br>
+              <div class="row">
+                <div class="row col-lg-4">
+                  <mat-form-field appearance="fill">
+                      <mat-label>Enter Date of Flight</mat-label>
+                      <input formControlName="dateOfFlight" [min]="minDate" [max]="maxDate" [matDatepicker]="picker" matInput placeholder="Placeholder">
+                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-datepicker #picker></mat-datepicker>
+                      <mat-hint>Enter Date of Flight</mat-hint>
+                  </mat-form-field>
+                </div>
+
+                <div class="row col-lg-2">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Est. Departure Time (ETD) of Flight</mat-label>
+                        <input type="time" formControlName="timeOfFlight" matInput>                        
+                        <mat-hint>Enter ETD of Flight</mat-hint>
+                    </mat-form-field>
+                </div>
+
+                <div class="row col-lg-4">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Total No of Seats</mat-label>
+                        <input formControlName="noOfSeats" matInput placeholder="# Seats">     
+                        <mat-hint>Enter No of Seats</mat-hint>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="row col-lg-4">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Price</mat-label>
+                        <input formControlName="price" matInput placeholder="Price">     
+                        <mat-hint>Enter Price</mat-hint>
+                    </mat-form-field>
+                </div>
+  
+            <div class="row col-lg-6">
+                  <button mat-raised-button color="accent" [disabled]="flightService.form.invalid">
+                    ADD Flight                   
+                    <mat-icon matSuffix>add </mat-icon> 
+                  </button> 
+                  <mat-hint>Click to Add</mat-hint>
+              </div>
+
+              </div>
+               
+              </form>
+    </mat-card>
+</div>
+
